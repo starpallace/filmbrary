@@ -5,11 +5,22 @@ from django.template.defaultfilters import slugify
 from taggit.models import Tag
 
 def home(request):
-    abc= {'site':'FilmBrary'}
-    #fq = Film.objects.order_by('name')
-    common_tags = Movie.taggs_plus.most_common()[0:4]
+    
+    mq = Movie.objects.order_by('title')
+    common_tags = Movie.taggs_plus.most_common()[:4]
     form = AddMovie(request.POST)
-
-
-
-    return render(request,'films/home.html', abc)
+    if form.is_valid():
+        newfilm = form.save(commit=False)
+        newfilm.slug = slugify(newfilm.title)
+        newfilm.save()
+        # Without this next line the tags won't be saved
+        form.save_m2m()
+    
+    context = {
+        'site':'FilmBrary',
+        'movies':mq,
+        'form': form,
+        'common_tags': common_tags,
+    }
+    
+    return render(request,'films/home.html', context)

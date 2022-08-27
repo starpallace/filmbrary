@@ -11,6 +11,7 @@ System requirements:
     pip install django
     pip install pillow
     pip install django-taggit
+    pip install django-crispy-forms
     
 To run this site on your computer:
   Navigate in cmd to project folder, where file manage.py is located. 

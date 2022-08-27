@@ -1,19 +1,25 @@
-
 {% extends 'films/base.html' %}
 
 {% block title %}
+{% load crispy_forms_tags %}
 <title>FilmBrary</title>
-
 {% endblock title %}
-
-
-
-
 
 
 
 {% block body %}
 <h2>Welcome To Our {{site}}!!</h2>
-
-
+<div>
+    
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form | crispy }}
+            </fieldset>
+        </form>
+        <div class="form-group pt-2">
+            <button class="btn btn-outline-info" type="submit">Post</button>
+        </div>
+    <btn ></btn>
+</div>
 {% endblock body %}
