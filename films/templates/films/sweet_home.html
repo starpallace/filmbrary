@@ -1,0 +1,30 @@
+{% extends 'films/base.html' %}
+
+{% block title %}
+
+<title>FilmBrary</title>
+{% endblock title %}
+
+
+
+{% block body %}
+<h2>Welcome to  {{site}} !!!</h2>
+<div class="container-fluid container-md text-center ml-7 ">
+
+<div class="d-flex flex-sm-row mb-3">
+
+{% for film in films %}
+<div class="p-2 card" style="width: 18rem;">    
+    <!--div class="card filmview" style="width: 18rem;"-->
+            <img src="{{ film.poster.url }}" class="card-img-top" alt="poster">
+            <div class="card-body">
+            <h5 class="card-title">{{ film.title }}</h5>
+            <p class="card-text">{{ film.shorts }}</p>
+            <a href="#" class="btn btn-primary stretched-link">reed more</a>
+        </div>
+</div>
+{% endfor %}
+</div>
+
+</div>
+{% endblock body %}

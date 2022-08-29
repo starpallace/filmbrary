@@ -8,12 +8,11 @@ class AddMovie(forms.ModelForm):
         fields = [ 
             'title', 
             'year', 
-            'desc',
+            'description',
             'poster',
-            'screens',
-            'taggs_plus',
-            'slug'
-        ]
+            'screenshots',
+            'tags', 
+            ]
 
 
         

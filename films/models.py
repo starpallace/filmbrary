@@ -10,16 +10,15 @@ class Movie(models.Model):
             MaxValueValidator(2050),
             MinValueValidator(1900)
         ])
-    desc = models.TextField(default='Not provided')
+    description = models.TextField(default='Not provided')
     poster = models.ImageField(default='movie.jpg', upload_to='posters')
-    screens = models.ImageField(blank=True)
-    taggs_plus = TaggableManager()
-    #taggs_minus = TaggableManager()
+    screenshots = models.ImageField(blank=True)
+    tags = TaggableManager()
 
     def __str__(self):
         return self.title
 
     def shorts(self):
-        return self.desc[:160] + '...'
+        return self.description[:260] + '...'
 
        

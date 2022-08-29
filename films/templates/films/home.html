@@ -1,25 +1,34 @@
 {% extends 'films/base.html' %}
 
 {% block title %}
-{% load crispy_forms_tags %}
+
 <title>FilmBrary</title>
 {% endblock title %}
 
 
 
 {% block body %}
-<h2>Welcome To Our {{site}}!!</h2>
-<div>
-    
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                {{ form | crispy }}
-            </fieldset>
-        </form>
-        <div class="form-group pt-2">
-            <button class="btn btn-outline-info" type="submit">Post</button>
+<h2>Welcome to  {{site}} !!!</h2>
+<div class="container-fluid container-md text-center ml-7 ">
+  
+    {% for film in films %}
+        <div>
+                <img class="rounded article-img" height="200px" src="{{ film.poster.url }}">
+                <h2><a class="film-title" href="#">{{ film.title }}</a></h2>
+                <p class="preview-description center">{{ film.description }}</p>
+                    
         </div>
-    <btn ></btn>
+
+{% endfor %}
+{% for film in films %}
+<div class="card filmview" style="width: 22rem;">
+        <img src="{{ film.poster.url }}" class="card-img-top" alt="poster">
+        <div class="card-body">
+          <h5 class="card-title">{{ film.title }}</h5>
+          <p class="card-text">{{ film.shorts }}</p>
+          <a href="#" class="btn btn-primary stretched-link">reed more</a>
+        </div>
+      </div>
+{% endfor %}
 </div>
 {% endblock body %}

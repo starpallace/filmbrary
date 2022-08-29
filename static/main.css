@@ -1,4 +1,37 @@
 body {
-    background: rgb(246, 246, 203);
+    background: rgb(246, 246, 240);
     color: #333333;
+    text-align: center;
+}
+
+
+
+.asteriskField {
+    display: none;
+}
+.requiredField {
+    margin-top: 17px;
+    font-size: 22px;
+    font-weight: 600;
+}
+.help-block {
+    font-size: 10px;
+    color: grey;
+    margin-bottom: 0;
+    margin-top: 0px;
+    font-weight: 200;
+}
+
+.film-title {
+    color: black
+}
+.preview-description {
+    width: 400px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.filmview {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
 }
