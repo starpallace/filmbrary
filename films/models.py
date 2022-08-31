@@ -1,6 +1,7 @@
 from django.db import models
 from taggit.managers import TaggableManager
 from django.core.validators import MaxValueValidator, MinValueValidator
+from PIL import Image
 
 class Movie(models.Model):
      
@@ -20,5 +21,14 @@ class Movie(models.Model):
 
     def shorts(self):
         return self.description[:260] + '...'
+    def save(self, **kwargs):
+        super().save()
+
+        img=Image.open(self.poster.path)
+        
+        if img.height > 280 or img.width > 200:
+            output_size = (280, 200)
+            img.thumbnail(output_size)
+            img.save(self.poster.path)
 
        

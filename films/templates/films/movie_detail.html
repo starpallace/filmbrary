@@ -1,0 +1,38 @@
+{% extends 'films/base.html' %}
+
+{% block title %}
+
+<title>{{ film.title }}</title>
+{% endblock title %}
+
+
+
+{% block body %}
+<h2>Welcome to  FilmBrary !!!</h2>
+
+<div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <h3>{{ film.title }}</h3>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src="{{ film.poster.url }}" class="poster-detail" alt="poster">
+        </div>
+        <div class="col">
+          <p>Year: {{ film.year }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="plot">{{ film.description }}</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock body %}
+

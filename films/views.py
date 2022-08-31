@@ -13,23 +13,15 @@ class SweetHome(ListView):
     ordering = ['-id']
     
 
-
-
-def home(request):
-    #tag = get_object_or_404(Tag, slug=slug)
-    films = Movie.objects.all()
-    context = {
-        
-        'films': films
-    }
-    return render(request, 'films/home.html', context)
-
+class FilmPage (DetailView):
+    model = Movie
+    context_object_name = 'film'
 
 def add_movie(request):
     
     mq = Movie.objects.order_by('title')
     common_tags = Movie.tags.most_common()[:4]
-    form = AddMovie(request.POST)
+    form = AddMovie(request.POST, request.FILES)
 
     if form.is_valid():
         newfilm = form.save(commit=False)
@@ -49,3 +41,13 @@ def add_movie(request):
     }
     
     return render(request,'films/add_movie.html', context)
+
+
+def home(request):
+    #tag = get_object_or_404(Tag, slug=slug)
+    films = Movie.objects.all()
+    context = {
+            
+            'films': films
+        }
+    return render(request, 'films/home.html', context)

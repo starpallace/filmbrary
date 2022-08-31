@@ -4,8 +4,6 @@ body {
     text-align: center;
 }
 
-
-
 .asteriskField {
     display: none;
 }
@@ -25,13 +23,21 @@ body {
 .film-title {
     color: black
 }
-.preview-description {
-    width: 400px;
-    margin-bottom: 30px;
-    text-align: center;
+
+.card-text {
+    font-size: 11px;
+    color: #333333;
 }
+
 .filmview {
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
+}
+.poster-detail {
+    width: 350px;
+}
+.plot {
+    text-align: justify;
+    font-size: 11;
 }
