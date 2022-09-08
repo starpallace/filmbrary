@@ -26,8 +26,8 @@ class Movie(models.Model):
 
         img=Image.open(self.poster.path)
         
-        if img.height > 280 or img.width > 200:
-            output_size = (280, 200)
+        if img.height > 480 or img.width > 350:
+            output_size = (480, 350)
             img.thumbnail(output_size)
             img.save(self.poster.path)
 

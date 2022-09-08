@@ -11,11 +11,32 @@ class SweetHome(ListView):
     template_name = 'films/sweet_home.html'
     context_object_name = 'films'
     ordering = ['-id']
-    
+
+
+class CloneHome (ListView):
+    model = Movie
+    template_name = 'films/home_clone.html'
+    context_object_name = 'films'
+    ordering = ['-id']
 
 class FilmPage (DetailView):
     model = Movie
     context_object_name = 'film'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tt'] = 25
+        return context
+
+def film_page(request,id):
+    film = Movie.objects.get(id=id)
+    all_tags = Tag.objects.all()
+    context = {
+        'film':film,
+        'all_tags': all_tags,
+         }
+    return render (request, 'films/movie_detail.html', context)
+
 
 def add_movie(request):
     
@@ -46,8 +67,10 @@ def add_movie(request):
 def home(request):
     #tag = get_object_or_404(Tag, slug=slug)
     films = Movie.objects.all()
+    all_tags = Tag.objects.all()
     context = {
             
-            'films': films
+            'films': films,
+            'all_tags': all_tags,
         }
-    return render(request, 'films/home.html', context)
+    return render(request, 'films/home_clone.html', context)

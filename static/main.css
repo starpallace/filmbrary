@@ -4,6 +4,7 @@ body {
     text-align: center;
 }
 
+
 .asteriskField {
     display: none;
 }
@@ -20,6 +21,31 @@ body {
     font-weight: 200;
 }
 
+
+.content-section h4 {
+    color:#5e5124;
+    margin-top: 40px;
+}
+.year-menu {
+    margin-top:12px;
+    margin-bottom: 12px;
+}
+
+.year-menu h5{
+    color:#5e5124;
+    margin-bottom: 33px;
+    margin-top: 10px;
+}
+
+#YR .slider-selection {
+	background: #5e5124;
+}
+#YR .slider-handle {
+	background: hsl(47, 36%, 48%);
+}
+
+
+
 .film-title {
     color: black
 }
@@ -28,6 +54,11 @@ body {
     font-size: 11px;
     color: #333333;
 }
+.card {
+    margin: 5px;
+}
+
+
 
 .filmview {
     margin-top: 30px;
@@ -40,4 +71,15 @@ body {
 .plot {
     text-align: justify;
     font-size: 11;
+    margin: 30px;
+    padding: 30px;
+    background-color: #fdfdf9;
+}
+.span-tags {
+    color: greenyellow;
+    background: black;
+}
+.detail-title {
+    margin: 30px;
+    font-weight: 700;
 }

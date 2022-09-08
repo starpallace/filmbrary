@@ -13,7 +13,7 @@
 <div class="container text-center">
     <div class="row">
       <div class="col">
-        <h3>{{ film.title }}</h3>
+        <h3 class="detail-title">{{ film.title }}</h3>
       </div>
     </div>
     <div class="row">
@@ -22,6 +22,16 @@
         </div>
         <div class="col">
           <p>Year: {{ film.year }}</p>
+          <p>all Tags:</p>
+
+          {% for tag in all_tags %}
+          <span class="span-tags">{{ tag }}</span>
+          {% endfor %}
+
+          <p>Tags:</p>
+          {% for f in film.tags.names %}
+          <span class="span-tags">{{ f }}</span>
+          {% endfor %}
         </div>
     </div>
     <div class="row">

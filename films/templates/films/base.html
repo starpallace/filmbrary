@@ -8,20 +8,136 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"></style>
     
     {% block title %}
-
-
     {% endblock title %}
 </head>
 <body>
     
-{% block body %}
+  <nav class="navbar navbar-expand-lg" style="background-color: rgb(146, 144, 119)"">
+    <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Film Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'add_movie' %}">Add Movie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href='/admin/' >Admin</a>
+              </li>
+            </ul>           
+          </div>
+    </div>
+  </nav>
+   
+      
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="content-section">
+          <h4>Filters</h4>
+          <form>
+          <p class='text-muted' method="GET">...
+            <div class="form-floating mb-2">
+              <select class="form-select text-light bg-dark text-center" id="CountrySelect" aria-label="Country Select">
+              <option selected>All</option>
+              <option value="1">Great Britain</option>
+              <option value="2">Australia</option>
+              <option value="3">Ukraine</option>
+              <option value="3">USA</option>
+              </select>
+              <label class="text-light text text-center" for="floatingSelect"> Country</label>
+            </div>
+            
+
+            <div class="form-floating mb-1">
+              <select class="form-select text-light bg-dark text-center" id="includeTag0" aria-label="Tag Include0">
+              <option value='all' selected>All</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Include Tag</label>
+            </div>
+
+            <div class="form-floating mb-1">
+              <select class="form-select text-light bg-dark text-center" id="includeTag1" aria-label="Tag Include1">
+              <option value='None' selected>None</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Include Tag</label>
+            </div>
+
+            <div class="form-floating mb-1">
+              <select class="form-select text-light bg-dark text-center" id="includeTag2" aria-label="Tag Include2">
+              <option value='None' selected>None</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Include Tag</label>
+            </div>
 
 
+            <div class="form-floating mb-1">
+              <select class="form-select text-warning bg-dark text-center" id="ExcludeTag0" aria-label="Tag Exclude0">
+              <option value='None' selected>None</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Exclude Tag</label>
+            </div>
 
-{% endblock body %}
+            <div class="form-floating mb-1">
+              <select class="form-select text-warning bg-dark text-center" id="ExcludeTag0" aria-label="Tag Exclude0">
+              <option value='None' selected>None</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Exclude Tag</label>
+            </div>
+            
+            <div  class="year-menu">
+              <h5>Year</h5>
+            
+              <input class="form-range span2" type="text"  value="" data-slider-min="1900" data-slider-max="2025"   data-slider-step="1" data-slider-id="YR" id="yearRanger" data-slider-handle="square" data-slider-value="[1900,2025]"/> 
+              
+            </div>
+
+            <a class="btn btn-dark btn-outline-warning shadow-lg mt-4" type="submit">Search </a>
+          </p>
+          </form>
+          
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        {% block body %}
+        {% endblock body %}
+
+
+        <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"></style>
+        <script src="{% static 'JS/jquery.js' %}"></script>
+        <script src="{% static 'BootstrapSlider/src/js/bootstrap-slider.js' %}"></script>
+        <link href="{% static 'BootstrapSlider/dist/css/bootstrap-slider.css' %}" rel="stylesheet">
+        
+
+ 
     
+        <script src="{% static 'JS/home_clone.js' %}"></script>
+
+
+      </div>
+    </div>
+  </main>
+           
+          
 </body>
 </html>
