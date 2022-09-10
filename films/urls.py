@@ -11,7 +11,7 @@ from django.conf import settings
 
 urlpatterns = [
     
-    path('films/<id>/', film_page, name='films-film_page' ),
+    path('films/<slug>/', film_page, name='film_page' ),
     
 ]
 

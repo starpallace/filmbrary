@@ -17,7 +17,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ film.title }}</h5>
             <p class="card-text">{{ film.shorts }}</p>
-            <a href="{% url 'films-film_page' film.id %}" class="btn btn-sm btn-outline-info stretched-link">reed more</a>
+            <a href="{% url 'film_page' film.slug %}" class="btn btn-sm btn-outline-info stretched-link">reed more</a>
         </div>
     </div>
     {% endfor %}

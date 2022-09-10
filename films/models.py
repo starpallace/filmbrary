@@ -11,6 +11,10 @@ class Movie(models.Model):
             MaxValueValidator(2050),
             MinValueValidator(1900)
         ])
+    country = models.CharField(max_length=100, default='USA')
+    rating = models.DecimalField(default='0.01', max_digits=9, decimal_places=6, validators=[
+                MaxValueValidator(10)
+            ])    
     description = models.TextField(default='Not provided')
     poster = models.ImageField(default='movie.jpg', upload_to='posters')
     screenshots = models.ImageField(blank=True)
@@ -20,7 +24,7 @@ class Movie(models.Model):
         return self.title
 
     def shorts(self):
-        return self.description[:260] + '...'
+        return self.description[:150] + '...'
     def save(self, **kwargs):
         super().save()
 

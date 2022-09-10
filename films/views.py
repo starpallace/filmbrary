@@ -28,8 +28,8 @@ class FilmPage (DetailView):
         context['tt'] = 25
         return context
 
-def film_page(request,id):
-    film = Movie.objects.get(id=id)
+def film_page(request,slug):
+    film = Movie.objects.get(slug=slug)
     all_tags = Tag.objects.all()
     context = {
         'film':film,
@@ -66,7 +66,18 @@ def add_movie(request):
 
 def home(request):
     #tag = get_object_or_404(Tag, slug=slug)
-    films = Movie.objects.all()
+    films = Movie.objects.all().filter(year=1998).order_by('-id')
+    all_tags = Tag.objects.all()
+    context = {
+            
+            'films': films,
+            'all_tags': all_tags,
+        }
+    return render(request, 'films/home_clone.html', context)
+
+def filter(request):
+    #tag = get_object_or_404(Tag, slug=slug)
+    films = Movie.objects.all().filter(year=1996).order_by('id')
     all_tags = Tag.objects.all()
     context = {
             

@@ -12,6 +12,8 @@ class AddMovie(forms.ModelForm):
             'poster',
             'screenshots',
             'tags', 
+            'rating',
+            'country',
             ]
 
 

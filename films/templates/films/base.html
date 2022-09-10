@@ -39,22 +39,23 @@
       <div class="col-md-3">
         <div class="content-section">
           <h4>Filters</h4>
-          <form>
-          <p class='text-muted' method="GET">...
+          <form method="GET" action=".">
+          
+
             <div class="form-floating mb-2">
-              <select class="form-select text-light bg-dark text-center" id="CountrySelect" aria-label="Country Select">
+              <select class="form-select text-light bg-dark text-center" type="text" id="CountrySelect" name="country" aria-label="Country Select">
               <option selected>All</option>
-              <option value="1">Great Britain</option>
-              <option value="2">Australia</option>
-              <option value="3">Ukraine</option>
-              <option value="3">USA</option>
+              <option value="Great Britain">Great Britain</option>
+              <option value="Australia">Australia</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="USA">USA</option>
               </select>
               <label class="text-light text text-center" for="floatingSelect"> Country</label>
             </div>
             
 
             <div class="form-floating mb-1">
-              <select class="form-select text-light bg-dark text-center" id="includeTag0" aria-label="Tag Include0">
+              <select class="form-select text-light bg-dark text-center" type="text" name="itag1" id="includeTag0" aria-label="Tag Include0">
               <option value='all' selected>All</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
@@ -64,7 +65,7 @@
             </div>
 
             <div class="form-floating mb-1">
-              <select class="form-select text-light bg-dark text-center" id="includeTag1" aria-label="Tag Include1">
+              <select class="form-select text-light bg-dark text-center" type="text" name="itag2" id="includeTag1" aria-label="Tag Include1">
               <option value='None' selected>None</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
@@ -74,7 +75,7 @@
             </div>
 
             <div class="form-floating mb-1">
-              <select class="form-select text-light bg-dark text-center" id="includeTag2" aria-label="Tag Include2">
+              <select class="form-select text-light bg-dark text-center" type="text" name="itag3" id="includeTag2" aria-label="Tag Include2">
               <option value='None' selected>None</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
@@ -85,7 +86,7 @@
 
 
             <div class="form-floating mb-1">
-              <select class="form-select text-warning bg-dark text-center" id="ExcludeTag0" aria-label="Tag Exclude0">
+              <select class="form-select text-warning bg-dark text-center" type="text" name="etag1" id="ExcludeTag0" aria-label="Tag Exclude0">
               <option value='None' selected>None</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
@@ -95,7 +96,7 @@
             </div>
 
             <div class="form-floating mb-1">
-              <select class="form-select text-warning bg-dark text-center" id="ExcludeTag0" aria-label="Tag Exclude0">
+              <select class="form-select text-warning bg-dark text-center" type="text" name="etag2" id="ExcludeTag0" aria-label="Tag Exclude0">
               <option value='None' selected>None</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
@@ -107,12 +108,12 @@
             <div  class="year-menu">
               <h5>Year</h5>
             
-              <input class="form-range span2" type="text"  value="" data-slider-min="1900" data-slider-max="2025"   data-slider-step="1" data-slider-id="YR" id="yearRanger" data-slider-handle="square" data-slider-value="[1900,2025]"/> 
+              <input class="form-range span2" type="text" name="years"  value="" data-slider-min="1900" data-slider-max="2025"   data-slider-step="1" data-slider-id="YR" id="yearRanger" data-slider-handle="square" data-slider-value="[1900,2025]"/> 
               
             </div>
 
-            <a class="btn btn-dark btn-outline-warning shadow-lg mt-4" type="submit">Search </a>
-          </p>
+            <button class="btn btn-dark btn-outline-warning shadow-lg mt-4" type="submit">Search </button>
+          
           </form>
           
         </div>
