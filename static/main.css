@@ -37,29 +37,40 @@ body {
     margin-top: 10px;
 }
 
-#YR .slider-selection {
+#YR .slider-selection , #RR .slider-selection{
 	background: #5e5124;
 }
-#YR .slider-handle {
+#YR .slider-handle ,#RR .slider-handle {
 	background: hsl(47, 36%, 48%);
 }
 
 
 
 .film-title {
-    color: black
+    color: rgb(63, 46, 46)
 }
-
+.year-rating {
+    text-align: center;
+    color: #5e5124;
+    font-weight: 700;
+}
 .card-text {
     font-size: 11px;
     color: #353131;
     text-align:justify;
+    padding: 0px;
 }
 .card {
-    margin: 5px;
+    margin:auto;
+    margin-top: 7px;
+    margin-bottom: 5px;
 }
-
-
+.side {
+    padding-top: 10px;
+}
+.listing {
+    padding-top: 10px;
+}
 
 .filmview {
     margin-top: 30px;

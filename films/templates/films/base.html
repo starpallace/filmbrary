@@ -14,8 +14,13 @@
 </head>
 <body>
     
-  <nav class="navbar navbar-expand-lg" style="background-color: rgb(146, 144, 119)"">
-    <div class="container-fluid">
+  
+      
+  <main role="main" class="container container-xxl">
+
+    <div class="row">
+      <nav class="navbar navbar-expand-lg" style="background-color: rgb(146, 144, 119)"">
+        <div class="container container-fluid">
           <a class="navbar-brand" href="{% url 'home' %}">Film Library</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,25 +35,25 @@
               </li>
             </ul>           
           </div>
+        </div>
+      </nav>
     </div>
-  </nav>
-   
-      
-  <main role="main" class="container">
+
+
     <div class="row">
-      <div class="col-md-3">
+      <div class="side col-lg-3 gx-0">
         <div class="content-section">
           <h4>Filters</h4>
           <form method="GET" action=".">
           
 
-            <div class="form-floating mb-2">
+            <div class="form-floating mb-3">
               <select class="form-select text-light bg-dark text-center" type="text" id="CountrySelect" name="country" aria-label="Country Select">
-              <option selected>All</option>
-              <option value="Great Britain">Great Britain</option>
-              <option value="Australia">Australia</option>
-              <option value="Ukraine">Ukraine</option>
-              <option value="USA">USA</option>
+              <option value='All' selected>All</option>
+              
+              {% for country in countries %}
+              <option value="{{country}}">{{country}}</option>
+              {% endfor %}
               </select>
               <label class="text-light text text-center" for="floatingSelect"> Country</label>
             </div>
@@ -56,7 +61,7 @@
 
             <div class="form-floating mb-1">
               <select class="form-select text-light bg-dark text-center" type="text" name="itag1" id="includeTag0" aria-label="Tag Include0">
-              <option value='all' selected>All</option>
+              <option value='All' selected>All</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
               {% endfor %}
@@ -86,7 +91,7 @@
 
 
             <div class="form-floating mb-1">
-              <select class="form-select text-warning bg-dark text-center" type="text" name="etag1" id="ExcludeTag0" aria-label="Tag Exclude0">
+              <select class="form-select text-warning bg-dark text-center" type="text" name="etag1" id="ExcludeTag1" aria-label="Tag Exclude1">
               <option value='None' selected>None</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
@@ -96,7 +101,7 @@
             </div>
 
             <div class="form-floating mb-1">
-              <select class="form-select text-warning bg-dark text-center" type="text" name="etag2" id="ExcludeTag0" aria-label="Tag Exclude0">
+              <select class="form-select text-warning bg-dark text-center" type="text" name="etag2" id="ExcludeTag2" aria-label="Tag Exclude2">
               <option value='None' selected>None</option>
               {% for tag in all_tags %}
                 <option value="{{tag}}">{{tag}}</option>
@@ -107,9 +112,12 @@
             
             <div  class="year-menu">
               <h5>Year</h5>
-            
-              <input class="form-range span2" type="text" name="years"  value="" data-slider-min="1900" data-slider-max="2025"   data-slider-step="1" data-slider-id="YR" id="yearRanger" data-slider-handle="square" data-slider-value="[1900,2025]"/> 
-              
+              <input class="form-range span2" type="text" name="years"  value="" data-slider-min="1900" data-slider-max="2025"   data-slider-step="1" data-slider-id="YR" id="YearRanger" data-slider-handle="square" data-slider-value="[1900,2025]"/> 
+            </div>
+
+            <div  class="rating-menu">
+              <h5>Rating</h5>
+              <input class="form-range span2" type="text" name="rating"  value="" data-slider-min="1" data-slider-max="10"   data-slider-step="0.1" data-slider-id="RR" id="RatingRanger" data-slider-handle="square" data-slider-value="[0,10]"/> 
             </div>
 
             <button class="btn btn-dark btn-outline-warning shadow-lg mt-4" type="submit">Search </button>
@@ -119,7 +127,7 @@
         </div>
       </div>
 
-      <div class="col-md-9">
+      <div class="col-9 gx-1 container-fluid">
         {% block body %}
         {% endblock body %}
 

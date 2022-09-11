@@ -34,5 +34,4 @@ class Movie(models.Model):
             output_size = (480, 350)
             img.thumbnail(output_size)
             img.save(self.poster.path)
-
-       
+    
