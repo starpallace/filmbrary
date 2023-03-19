@@ -1,0 +1,23 @@
+{% extends 'movies/base.html' %}
+
+{% block title %}
+{% load crispy_forms_tags %}
+<title>Delete FL</title>
+{% endblock title %}
+
+
+
+{% block body %}
+<h2>DELETE  film from database!!</h2>
+<div class="container-fluid container-md text-center ml-7 ">
+        <form class="form form-control-sm-2" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Do you hate this film, and want to delete it forever and ever?</p>
+        
+            <div class="form-group mb-3 mt-3 pt-2">
+                <button class="btn btn-dark" type="submit" value="Update">Shure, delete             !</button>
+            </div>
+        </form>
+
+</div>
+{% endblock body %}

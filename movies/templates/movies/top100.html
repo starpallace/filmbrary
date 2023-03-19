@@ -1,0 +1,39 @@
+{% extends 'movies/base.html' %}
+
+{% block title %}
+
+<title>Top 100 FL</title>
+{% endblock title %}
+
+
+{% block body %}
+
+
+<div class="d-flex flex-row flex-wrap ">
+  
+    {% for film in movies %}
+        
+        <div class="p-0  card" style="width: 20rem; ">  
+            <div class="card-body">
+              <a href="{% url 'film_page' film.slug %}" style="text-decoration: none;"><img src="{{ film.poster.url }}"  class="card-img-top" alt="poster">
+                <h5 class="card-title mt-2">{{ film.title }}</h5>
+                <div class="year-rating">
+                    &nbsp<span>year</span>&nbsp &nbsp &nbsp &nbsp<span>rating</span>                    
+                    <h5 class="card-title">{{ film.year }}&nbsp &nbsp &nbsp{{ film.rating | floatformat:2}}</h5>
+                </div>
+              </a>
+              
+              <a href="{% url 'film_page' film.slug %}" style="text-decoration: none;">
+                  <p class="card-text">{{ film.bigger }}</p>
+              </a>
+              
+            </div>
+        </div>
+    {% endfor %}
+ 
+</div>
+
+
+
+
+{% endblock body %}

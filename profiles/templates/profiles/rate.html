@@ -1,0 +1,23 @@
+{% extends 'movies/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Rate</title>
+{% endblock title %}
+
+
+{% block body %}
+    <h2>Welcome to  Our Film Library !!!</h2>
+
+    <div class="text-center ">
+        <div class="register-form">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button class="btn btn-success m-2" type="submit">Update</button>
+            </form>
+            
+        </div>
+        
+    </div>
+{% endblock body %}

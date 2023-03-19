@@ -1,0 +1,26 @@
+{% extends 'movies/base.html' %}
+
+{% block title %}
+{% load crispy_forms_tags %}
+<title>Adding films</title>
+{% endblock title %}
+
+
+
+{% block body %}
+<h2>Add film to  {{site}} database!!</h2>
+<div class="container-fluid container-md text-center ml-7 ">
+        <form class="form form-control-sm-2" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group sm">
+                
+                {{ form | crispy }}
+            </fieldset>
+        
+            <div class="form-group mb-3 mt-3 pt-2">
+                <button class="btn btn-dark" type="submit">Add film to database</button>
+            </div>
+        </form>
+
+</div>
+{% endblock body %}

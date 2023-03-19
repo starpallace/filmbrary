@@ -1,0 +1,16 @@
+{% extends 'movies/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Log Out</title>
+{% endblock title %}
+
+
+{% block body %}
+    <h2>You were logged out from the system</h2>
+
+            <div>
+                <p> <a class="m-2" href="{% url 'profiles-login' %}">Log In</a></p>
+            </div>
+        
+{% endblock body %}

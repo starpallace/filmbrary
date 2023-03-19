@@ -1,0 +1,36 @@
+version: "3"
+services:
+  web:
+    build: .
+    command: python /film/manage.py runserver 0.0.0.0:8000
+     
+    volumes:
+      - .:/film
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    volumes:
+      - .:/film
+      - ./base:/var/run/postgresql/
+    container_name: postgres_cont
+    env_file:
+      - ./.env
+    restart: on-failure:1
+    ports: 
+    - "5432:5432"
+
+  init:
+      image: postgres:13
+      volumes:
+        - .:/film
+        - ./base:/var/run/postgresql/
+      container_name: postgres_init
+      command: >
+        bash -c "
+        cp film/movies.dump ..
+        && sleep 5
+        && pg_restore --username=postgres -d mvs movies.dump
+        "

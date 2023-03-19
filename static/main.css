@@ -1,0 +1,135 @@
+body {
+    
+    text-align: center;
+}
+
+.asteriskField {
+    display: none;
+}
+.requiredField {
+    margin-top: 17px;
+    font-size: 22px;
+    font-weight: 600;
+}
+.help-block {
+    font-size: 10px;
+    color: grey;
+    margin-bottom: 0;
+    margin-top: 0px;
+    font-weight: 200;
+}
+.controls p {
+    font-size: 14px;
+    color: rgb(154, 100, 100);
+    background-color: rgb(255, 243, 245);
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+.alert-error {
+    background-color: rgb(190, 22, 22);
+    padding: 0px;
+}
+.alert-success {
+    background-color: rgb(131, 255, 138);
+    padding: 0px;
+    color: black;
+}
+
+
+
+.content-section h4 {
+    color:#5e5124;
+    margin-top: 40px;
+}
+.year-menu {
+    margin-top:12px;
+    margin-bottom: 12px;
+}
+
+.year-menu h5{
+    color:#5e5124;
+    margin-bottom: 33px;
+    margin-top: 10px;
+    
+}
+
+#YR .slider-selection , #RR .slider-selection{
+	background: #363120;
+}
+#YR .slider-handle ,#RR .slider-handle {
+	background: hsl(41, 69%, 53%);
+}
+
+
+
+.card-title {
+    
+    color: rgb(50, 40, 40);
+    font-size: 16px;
+}
+.year-rating {
+    text-align: center;
+    color: #5e5124;
+    font-weight: 700;
+}
+.card-text {
+    font-size: 11px;
+    color: #353131;
+    text-align:justify;
+    padding: 0px;
+    margin: 0px;
+}
+.card-details {
+    font-size: 10px;
+    color: #363120;
+}
+.card {
+    margin:auto;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    padding: 0px;
+}
+.side {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+.sider {
+    width: 100px;
+}
+.listing {
+    padding-top: 10px;
+}
+
+.filmview {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.poster-detail {
+    width: 350px;
+}
+.plot {
+    text-align: justify;
+    font-size: 18px;
+    line-height: 36px;
+    margin: 10px;
+    padding: 30px;
+    background-color: #fdfdf9;
+}
+.film-headers h5 {
+    color:#ac5000;
+}
+.film-headers h3 {
+    font-weight: 200;
+    color:rgb(0, 0, 0);
+}
+.span-tags {
+    color: greenyellow;
+    background: black;
+}
+.detail-title {
+    margin: 30px;
+    font-weight: 700;
+}

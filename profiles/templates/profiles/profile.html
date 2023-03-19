@@ -1,0 +1,70 @@
+{% extends 'movies/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>{{user.username}} Profile</title>
+{% endblock title %}
+
+
+{% block body %}
+    <h2 class="m-3">Your personal page</h2>
+    <a  class='btn btn-danger m-5' href="{% url 'personal calc' %}" >Personal rate calculator</a>
+    <div class="container">
+        <div class="row film-headers">
+          <div class="col">
+            <img class="rounded" src="{{user.personal.image.url}}">
+          </div>
+          <div class="col">
+            <h3 style="margin-top: 10px;">Name</h3>
+            <h5>{{user.username}}</h5>
+            <h3 style="margin-top: 10px;">Mail</h3>
+            <h5>{{user.email}}</h5>
+            
+            
+            
+          </div>
+        </div>
+        <div class="row film-headers mt-5">
+          <div class="col">
+            <h3 style="margin-top: 10px;">Your rates</h3>
+            <ul>
+                {%for el, rate in user.personal.individ_rates.items%}
+                <li>{{el}} <strong>{{rate}}</strong></li>
+                {%endfor%}
+            </ul>
+          </div>
+        </div>
+        <div class="row film-headers mt-5">
+          <div class="col mt-5">  
+            <form class="form form-control-sm-2" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <fieldset class="form-group sm">
+                  {{ iform | crispy }}
+              </fieldset>
+                  <button class="btn btn-dark m-3" type="submit">Change picture</button>
+            </form>
+          </div>
+          <div class="col mt-5">  
+            <form class="form form-control-sm-2" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <fieldset class="form-group sm">
+                  {{ eform | crispy }}
+              </fieldset>
+                  <button class="btn btn-dark m-3" type="submit">Change picture</button>
+            </form>
+          </div>
+        </div>
+        <div class="col">  
+          <form class="form form-control-sm-2" method="POST" enctype="multipart/form-data">
+            {% if user.is_superuser %}
+              <p> Don't press button below if you are not shure what it does</p>
+              <a  class='btn btn-danger m-5' href="{% url 'parser' %}" >Add new films to library from python list</a>
+              
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    
+    
+    
+{% endblock body %}

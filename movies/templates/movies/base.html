@@ -1,0 +1,236 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static 'Bootstrap-5.2.2-dist/css/bootstrap.css' %}" rel="stylesheet" >
+    <script src="{% static 'Bootstrap-5.2.2-dist/js/bootstrap.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    
+    {% block title %}
+    {% endblock title %}
+</head>
+<body>  
+  <main role="main" class="container container-xxl">
+
+    <div class="row" >
+      <nav class="navbar  navbar-expand-lg " style="background-color: rgb(146, 144, 119); border-radius:0.3rem;">
+        <div class="container container-fluid">
+          <a class="navbar-brand mr" href="{% url 'home' %}" style="font-family: fantasy;">Film Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+            <img src="{% static 'favicon.ico' %}" style="height:30px;" class="rounded" alt="poster">
+          </button>
+          <div  id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item mr-4">
+                <a class="nav-link mr-4" aria-current="page" href="{% url 'top 100' %}">Top 100</a>
+              </li>
+              <li class="nav-item mr-4">
+                <a class="nav-link mr-4" aria-current="page" href="{% url 'about' %}">About</a>
+              </li>
+            </ul>           
+          </div>
+          <div  >
+            <ul class="navbar-nav me-auto ">
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link mr-3" style="color: orange; font-size:17px; font-weight: 600;"  href="{% url 'profiles-profile' %}">{{user.username}}</a>
+              </li>
+              {% if user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link mr-3" href='/admin/' >Manage Filmbrary</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mr-3" aria-current="page" href="{% url 'add_movie' %}">Add Movie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mr-3" aria-current="page" href="{% url 'make_cache' %}">Make Cache</a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link  mr-3" aria-current="page" href="{% url 'profiles-logout' %}">Log Out</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link mr-3 " aria-current="page" href="{% url 'profiles-login' %}">Log In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ml-3" aria-current="page" href="{% url 'profiles-register' %}">Register</a>
+              </li>
+              {% endif %}   
+          </div>
+        </div>
+      </nav>
+    </div>
+
+
+    <div class="row">
+      {% if sidebar == 1 %}
+      <div class="side col-sm-3 gx-0" style="width: 150px">
+        <div class="content-section">
+          
+          <form method="GET" action=".">
+            <h4 class="mb-0">Search</h4>
+            <div class="row mt-1 " >
+              <input class="form-control mt-0" name="string_search" type="search" placeholder="{{set_dict.string_search}}" value="{{set_dict.string_search}}" >
+            </div>
+            <div class="form-check form-switch mt-2">
+              <input class="form-check-input" type="checkbox" value="1" id="plot" name="plot">
+              <label class="form-check-label" for="flexCheckDefault">
+                Search in plot
+              </label>
+            </div>
+            
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-light bg-dark text-center" type="text" id="CountrySelect" name="country" aria-label="Country Select">
+              <option value='{{set_dict.country}}' selected>{{set_dict.country}}</option>
+              {% for country in countries %}
+              <option value="{{country}}">{{country}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect"> Country</label>
+            </div>
+            
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-light bg-dark text-center" type="text" name="igenre1" id="includeGenre1">
+              <option value='All' selected>All</option>
+              {% for genre in genres %}
+                <option value="{{genre}}">{{genre}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Include Genre</label>
+            </div>
+            
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-light bg-dark text-center" type="text" name="igenre2" id="includeGenre2">
+              <option value='All' selected>All</option>
+              {% for genre in genres %}
+                <option value="{{genre}}">{{genre}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Include Genre</label>
+            </div>
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-warning bg-dark text-center" type="text" name="egenre1" id="excludeGenre1">
+              <option value='None' selected>None</option>
+              {% for genre in genres %}
+                <option value="{{genre}}">{{genre}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Exclude Genre</label>
+            </div>
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-warning bg-dark text-center" type="text" name="egenre2" id="excludeGenre2">
+              <option value='None' selected>None</option>
+              {% for genre in genres %}
+                <option value="{{genre}}">{{genre}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Exclude Genre</label>
+            </div>
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-light bg-dark text-center" type="text" name="itag1" id="includeTag0" aria-label="Tag Include0">
+              <option value='All' selected>All</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Include Tag</label>
+            </div>
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-light bg-dark text-center" type="text" name="itag2" id="includeTag1" aria-label="Tag Include1">
+              <option value='None' selected>None</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Include Tag</label>
+            </div>
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-warning bg-dark text-center" type="text" name="etag1" id="ExcludeTag1" aria-label="Tag Exclude1">
+              <option value='None' selected>None</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Exclude Tag</label>
+            </div>
+
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select text-warning bg-dark text-center" type="text" name="etag2" id="ExcludeTag2" aria-label="Tag Exclude2">
+              <option value='None' selected>None</option>
+              {% for tag in all_tags %}
+                <option value="{{tag}}">{{tag}}</option>
+              {% endfor %}
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">Exclude Tag</label>
+            </div>
+            
+            <div  class="year-menu">
+              <h5>Year</h5>
+              <input class="form-range span2" type="text" name="years"  value="" data-slider-min="1900" data-slider-max="2025"   data-slider-step="1" data-slider-id="YR" id="YearRanger" data-slider-handle="square" data-slider-value="[{{set_dict.year_from}},{{set_dict.year_to}}]"/> 
+            </div>
+
+            <div  class="rating-menu">
+              <h5>Rating</h5>
+              <input class="form-range span2" type="text" name="rating"  value="" data-slider-min="1" data-slider-max="10"   data-slider-step="0.1" data-slider-id="RR" id="RatingRanger" data-slider-handle="square" data-slider-value="[{{set_dict.rate_from}},{{ set_dict.rate_to }}]"/> 
+            </div>
+            
+            <div class="row form-floating mt-4 mr-2 " >
+              <select class="form-select form-sm text-light bg-dark text-center " type="text" id="sort" name="sort" aria-label="Sort Method">
+                  <option value='-id' selected>last added</option>
+                  <option value="id">first added</option>
+                  <option value="rating">rating low to high</option>
+                  <option value="-rating">rating high to low</option>
+                  <option value="year">year low to high</option>
+                  <option value="-year">year high to low</option>
+              </select>
+              <label class="text-light text text-center" for="floatingSelect">sort by</label>
+            </div>
+            
+            <div class="row form-floating mt-4 mr-2" >
+              
+              <select class="form-select form-sm text-light bg-dark text-center " type="text" name="onPage" id="onPage">
+                <option value={{set_dict.onPage}} selected>{{set_dict.onPage}}</option>
+                <option value=36>36</option>
+                <option value=48>48</option>
+                <option value=60>60</option>
+              </select>
+              <label class="text-light text text-center"  for="onPage"> Films per Page</label>
+            </div>
+            <button class="btn btn-dark btn-outline-warning shadow-lg mt-4" type="submit">Search</button>
+          
+          </form>
+          
+        </div>
+      </div>
+      {% endif %}
+      <div class="col-9 gx-0 container-fluid">
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+
+        {% block body %}
+        {% endblock body %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"></style>
+      </div>
+    </div>
+  </main>
+           
+          
+</body>
+</html>
