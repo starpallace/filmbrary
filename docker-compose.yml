@@ -2,7 +2,14 @@ version: "3"
 services:
   web:
     build: .
-    command: python /film/manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c " sleep 9
+      && python /film/manage.py makemigrations
+      && sleep 7
+      && python /film/manage.py migrate
+      && sleep 10
+      && python /film/manage.py runserver 0.0.0.0:8000
+      "
      
     volumes:
       - .:/film
