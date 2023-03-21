@@ -10,9 +10,10 @@ services:
       && sleep 10
       && python /film/manage.py runserver 0.0.0.0:8000
       "
-     
+    container_name: django_service_container
     volumes:
-      - .:/film
+        - .:/film
+        - ./base:/var/run/postgresql/
     ports:
       - 8000:8000
     depends_on:
@@ -21,8 +22,8 @@ services:
     image: postgres:13
     volumes:
       - .:/film
-      - ./base:/var/run/postgresql/
-    container_name: postgres_cont
+      - ./temp:/var/run/postgresql/
+    container_name: postgres_service_container
     env_file:
       - ./.env
     restart: on-failure:1
@@ -33,7 +34,8 @@ services:
       image: postgres:13
       volumes:
         - .:/film
-        - ./base:/var/run/postgresql/
+        - ./temp:/var/run/postgresql/
+
       container_name: postgres_init
       command: >
         bash -c "
