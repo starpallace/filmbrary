@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%&#ki4d)#2ugi-05h_3%x$bjk!@+)j^7lkgfq0_pftlhf+e+=w
 DEBUG = True
 
 #changed for docker
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','localhost','db']
 
 # Application definition
 
@@ -92,6 +92,18 @@ DATABASES = {"default": env.db("DATABASE_URL")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# if you are not using docker and are under Windows system will use these parametersgi
+if os.name == 'nt':
+    DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mvs',
+        'USER': 'postgres',
+        'PASSWORD': '7777777',
+        'HOST': 'localhost',
+        'PORT': '5432',
+     }
+     }
 # NOT NEEDED AFTER ADDING .ENV
 # DATABASES = {
 #     'default': {
@@ -106,9 +118,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 #-------------------------------------------------------------
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

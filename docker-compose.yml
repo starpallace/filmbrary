@@ -28,7 +28,7 @@ services:
       - ./.env
     restart: on-failure:1
     ports: 
-    - "5432:5432"
+      - "5432:5432"
 
   init:
       image: postgres:13
