@@ -2,13 +2,14 @@ from pathlib import Path
 from django.contrib.postgres.operations import HStoreExtension
 from django.db import migrations
 import os
+# module python-environ (not environ)
+import environ
+
+
 
 class Migration(migrations.Migration):
-    ...
-
     operations = [
         HStoreExtension(),
-        
     ]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'film.wsgi.application'
 #----------------------------------------------------------------
 # ENVIROMENT SECTION
 
-import environ
+
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
@@ -102,6 +103,9 @@ if os.name == 'nt':
         'PASSWORD': '7777777',
         'HOST': 'localhost',
         'PORT': '5432',
+        'TEST': {
+            'NAME': 'movietest',
+        },
      }
      }
 # NOT NEEDED AFTER ADDING .ENV
