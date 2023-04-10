@@ -1,5 +1,6 @@
 from pathlib import Path
 from django.contrib.postgres.operations import HStoreExtension
+from django.contrib.postgres.operations import CreateExtension
 from django.db import migrations
 import os
 # module python-environ (not environ)
@@ -9,8 +10,17 @@ import environ
 
 class Migration(migrations.Migration):
     operations = [
-        HStoreExtension(),
+        CreateExtension(name='HStoreExtension'),
     ]
+
+
+MIGRATION_MODULES = {
+    'movies': 'movies.migrations'
+}
+
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -105,6 +115,9 @@ if os.name == 'nt':
         'PORT': '5432',
         'TEST': {
             'NAME': 'movietest',
+            'USER': 'postgres',
+            "MIGRATE": True,
+            'POSTGRES_EXTENSIONS': ['hstore']
         },
      }
      }
