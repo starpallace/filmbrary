@@ -1,3 +1,6 @@
 .venv
 .git
 .gitignore
+Lib
+temp
+parser
