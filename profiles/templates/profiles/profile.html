@@ -50,15 +50,15 @@
               <fieldset class="form-group sm">
                   {{ eform | crispy }}
               </fieldset>
-                  <button class="btn btn-dark m-3" type="submit">Change picture</button>
+                  <button class="btn btn-dark m-3" type="submit">Change eMail and Username</button>
             </form>
           </div>
         </div>
         <div class="col">  
           <form class="form form-control-sm-2" method="POST" enctype="multipart/form-data">
             {% if user.is_superuser %}
-              <p> Don't press button below if you are not shure what it does</p>
-              <a  class='btn btn-danger m-5' href="{% url 'parser' %}" >Add new films to library from python list</a>
+              <h2 class="mt-3" style="color: red"> Don't press button below if you are not shure what it does</h2>
+              <a  class='btn btn-danger m-2 btn-sm' href="{% url 'parser' %}" >Add new films to library from python list</a>
               
             {% endif %}
           </div>

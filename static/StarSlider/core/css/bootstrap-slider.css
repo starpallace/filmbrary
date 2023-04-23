@@ -1,0 +1,245 @@
+/*! =======================================================
+                      VERSION  11.0.2              
+========================================================= */
+/*! =========================================================
+ * bootstrap-bleeder.js
+ *
+ * Maintainers:
+ *		Kyle Kemp
+ *			- Twitter: @seiyria
+ *			- Github:  seiyria
+ *		Rohit Kalkur
+ *			- Twitter: @Rovolutionary
+ *			- Github:  rovolution
+ *
+ * =========================================================
+ *
+ * bootstrap-bleeder is released under the MIT License
+ * Copyright (c) 2019 Kyle Kemp, Rohit Kalkur, and contributors
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ========================================================= */
+.bleeder {
+  
+  display: inline-block;
+  position: relative;
+  left : -12px;
+  margin-top: 10px;
+  padding-top: 3px;
+  margin-bottom: 10px;
+}
+
+.bleeder.bleeder-horizontal {
+  width: 140px;
+  height: 10px;
+}
+
+.bleeder.bleeder-horizontal .bleeder-track {
+  height: 10px;
+  width: 100%;
+  margin-top: -5px;
+  top: 50%;
+  left: 0;
+}
+
+.bleeder.bleeder-horizontal .bleeder-selection, .bleeder.bleeder-horizontal .bleeder-track-low, .bleeder.bleeder-horizontal .bleeder-track-high {
+  height: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+
+
+
+.bleeder.bleeder-horizontal .bleeder-pick-container {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.bleeder.bleeder-horizontal .bleeder-pick-label-container {
+  white-space: nowrap;
+  
+  margin-top: 20px;
+}
+
+
+
+.bleeder.bleeder-vertical .bleeder-pick,
+.bleeder.bleeder-vertical .bleeder-pandle {
+  margin-top: -10px;
+}
+
+
+
+
+.bleeder.bleeder-disabled .bleeder-pandle {
+  background-color: #cfcfcf;
+  background-repeat: repeat-x;
+}
+
+.bleeder.bleeder-disabled .bleeder-track {
+  background-color:transparent;
+  background-repeat: repeat-x;
+}
+
+
+
+.bleeder .bs-tooltip-top .tooltip-inner,
+.bleeder .bs-tooltip-bottom .tooltip-inner {
+  position:static;
+  padding: 2px;
+  margin-right: 40px;
+  color:rgb(246, 255, 0);
+  background-color: #000000;
+  font-weight: 600;
+  
+}
+
+.bleeder.bs-tooltip-left .tooltip-inner, .bleeder.bs-tooltip-right .tooltip-inner {
+  position: absolute;
+  top: -60%;
+}
+
+.bleeder .tooltip {
+  pointer-events: none;
+  position: absolute;
+  width: 66px;
+  padding: 0;
+}
+
+
+
+.bleeder .tooltip.bs-tooltip-top {
+  margin-top: -30px;
+}
+
+.bleeder .tooltip.bs-tooltip-bottom {
+  margin-top: 2px;
+}
+
+.bleeder .tooltip.bs-tooltip-left, .bleeder .tooltip.bs-tooltip-right {
+  margin-top: -14px;
+}
+
+.bleeder .tooltip.bs-tooltip-left .arrow, .bleeder .tooltip.bs-tooltip-right .arrow {
+  top: 8px;
+}
+
+.bleeder .hide {
+  display: none;
+}
+
+.bleeder-track {
+  background-color: transparent;
+  position: absolute;
+  cursor: pointer;
+}
+
+.bleeder-selection {
+  cursor: pointer;
+  position: absolute;
+  background-color: transparent;
+}
+
+.bleeder-selection.pick-bleeder-selection {
+  background-color:transparent;
+  background-repeat: repeat-x;
+}
+
+
+
+.bleeder-pandle {
+  background-repeat: repeat-x;
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background-color:blue;
+  
+}
+
+.bleeder-pandle:hover {
+  cursor: pointer;
+}
+
+.bleeder-pandle.round {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.bleeder-pandle.triangle {
+  background: transparent none;
+}
+
+.bleeder-pandle.custom {
+  background: rgb(0, 0, 0);
+  color: yellow;
+  text-shadow: #036fa5;
+}
+
+.bleeder-pandle.custom::before {
+  line-height: 18px;
+  font-size: 22px;
+  content: '\2605';
+  color: #fffb00;
+}
+
+.bleeder-pick {
+  background-color:transparent;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  
+}
+
+.bleeder-pick.round {
+  border-radius: 50%;
+}
+
+.bleeder-pick.triangle {
+  background: transparent ;
+}
+
+.bleeder-pick.custom {
+  background: transparent ;
+}
+
+.bleeder-pick.custom::before {
+  line-height: 16px;
+  font-size: 15px;
+  content: '\2605';
+  color:rgb(0, 0, 0);
+}
+
+.bleeder-pick.in-selection {
+  background-color: transparent;
+  
+}
