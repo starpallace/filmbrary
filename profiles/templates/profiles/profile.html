@@ -25,13 +25,22 @@
           </div>
         </div>
         <div class="row film-headers mt-5">
-          <div class="col">
-            <h3 style="margin-top: 10px;">Your rates</h3>
-            <ul>
-                {%for el, rate in user.personal.individ_rates.items%}
-                <li>{{el}} <strong>{{rate}}</strong></li>
-                {%endfor%}
-            </ul>
+          <div >
+           <button class="btn btn-danger" type ="button" data-bs-toggle="collapse" href="#personalRatings" role="button" aria-expanded="false" aria-controls="personalRatings">
+            Your rates
+            </button>
+            
+            <div class="collapse multi-collapse" id="personalRatings">
+              <div class="card card-body">
+                <ul>
+                  {%for el, rate in user.personal.individ_rates.items%}
+                    <li>{{el}} <strong>{{rate}}</strong></li>
+                  {%endfor%}
+                </ul> 
+              </div>   
+            </div>
+                
+            
           </div>
         </div>
         <div class="row film-headers mt-5">

@@ -1,42 +1,21 @@
+from pytest_factoryboy import register
+from factories import UserFactory, MovieFactory
+from movies.models import MovieWorld
 import pytest
-from django.contrib.auth.models import User
+from movielib import films as film_list
 
-names_list = ['Johny1','Jacky2','Robbie3']
 
-@pytest.fixture
-def user_1(db):
-    user = User.objects.create_user('test_user')
-    return user
+register(UserFactory)
+register(MovieFactory)
 
-@pytest.fixture
-def new_user_factory(db):
-    def create_user(
-            username: str,
-            password: str=None,
-            first_name: str='firstname',
-            last_name: str='lastname',
-            email: str='em@ail.com',
-            is_staff: str=False,
-            is_superuser: str=False,
-            is_active: str= True
-    ):
-        user = User.objects.create_user(
-            username=username,
-            password=password,
-            first_name=first_name,
-            last_name=last_name,
-            email=email,
-            is_staff=is_staff,
-            is_superuser=is_superuser,
-            is_active=is_active
+@pytest.fixture()
+def user_inject(movie_factory):
+    
+    for film in film_list[0:20]:
+        MovieFactory.create(slug=film['slug'], title=film['title'], genres=film['genres'].replace(" ","").split(','), 
+                    year= film['year'], rating=float(film['rating']), director=film['director'].split(','), 
+                    poster=film['poster'], tags=film['tags'],
+                    plot=film['plot'], cast = film['cast'].split(','),
+                    countries = film['countries'].split(',')
         )
-        return user
-    return create_user
-
-@pytest.fixture
-def user_A(db,new_user_factory):
-    return new_user_factory(names_list[0],names_list[0])
-
-@pytest.fixture
-def user_B(db,new_user_factory):
-    return new_user_factory(names_list[1],names_list[1])
+    print('user_inject fixture created ', MovieWorld.objects.count(), ' entries')

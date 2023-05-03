@@ -11,17 +11,18 @@ def film_page(request,slug):
     set_dict = dict()
     movies = MovieWorld.objects.all()
 
+    # posts user rating of current film (making all possible chacks))
     if request.method == "POST":
         new_score = request.POST.get('rating')
         ratemovie = MovieWorld.objects.get(slug=slug)
         pers_model = Personal.objects.get(user=request.user)
-        object = pers_model.individ_rates
+        cur_object = pers_model.individ_rates
         new_dic = dict()
         rated = 0
         voters_number = int(ratemovie.voters_number)
         cur_rating=float(ratemovie.rating)
         #next section checks if User rated current film and if not adds to new dictionary, which will became new individ_rates
-        for key, val in object.items():
+        for key, val in cur_object.items():
             if key == ratemovie.title:
                 exclude_previous=float(object[key])
                 new_dic[key] = new_score
@@ -43,10 +44,10 @@ def film_page(request,slug):
         ratemovie.rating=rating
         ratemovie.save()
 
-
+    # loads defoult clean page
     elif request.method == 'GET':
         
-
+    # sidepanel filters functionality
         if '?' in request.get_full_path():
             
             base_line= 'http://localhost:8000/?'
@@ -156,7 +157,7 @@ def film_page(request,slug):
                 movies = movies.order_by(sorting)
 
             
-            
+            # number of films per page
             on_page = request.GET.get('onPage')
             if not on_page:
                 on_page=24
