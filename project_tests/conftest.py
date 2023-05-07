@@ -9,7 +9,7 @@ register(UserFactory)
 register(MovieFactory)
 
 @pytest.fixture()
-def user_inject(movie_factory):
+def movie_inject(movie_factory):
     
     for film in film_list[0:20]:
         MovieFactory.create(slug=film['slug'], title=film['title'], genres=film['genres'].replace(" ","").split(','), 
@@ -18,4 +18,4 @@ def user_inject(movie_factory):
                     plot=film['plot'], cast = film['cast'].split(','),
                     countries = film['countries'].split(',')
         )
-    print('user_inject fixture created ', MovieWorld.objects.count(), ' entries')
+    print('movie_inject fixture created ', MovieWorld.objects.count(), ' entries')

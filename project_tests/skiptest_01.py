@@ -23,7 +23,7 @@ def test_A(user_factory, username, password):
 
 
 @pytest.mark.django_db
-def test_E(user_inject):
+def test_E(movie_inject):
     print('Test E:', MovieWorld.objects.count())
     for flm in MovieWorld.objects.all():
         for genre in flm.genres:
