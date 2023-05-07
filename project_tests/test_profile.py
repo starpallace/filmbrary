@@ -13,7 +13,7 @@ class TestA(StaticLiveServerTestCase):
         fixtures = ["movie_inject"]
         driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
-        driver.get((f"{self.live_server_url}/"))
+        driver.get((f"{self.live_server_url}/viewers/login"))
         print(self.live_server_url)
 
         print(driver.title)

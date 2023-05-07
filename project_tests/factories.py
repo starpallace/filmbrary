@@ -25,8 +25,6 @@ class MovieFactory(factory.django.DjangoModelFactory):
     year = 1998
     voters_number = 20
     rating = 8
-    poster = factory.django.ImageField(filename='posters/movie.jpg')
-    screenshots = factory.django.ImageField(filename='posters/movie.jpg')
     tags = ['Dude, Dudino']
     genres = ['Comedy, Criminal']
     cast = ['Juliana Moor, Jaff Bridges']
