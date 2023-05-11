@@ -14,7 +14,7 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form | crispy }}
-                <button class="btn btn-success m-2" type="submit">Register</button>
+                <button class="btn btn-success m-2" id="submit" type="submit">Register</button>
             </form>
             <div>
                 <p> Already have account?<a class="m-2" href="{% url 'profiles-login' %}">Log In</a></p>
