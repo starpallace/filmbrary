@@ -14,8 +14,11 @@ class Migration(migrations.Migration):
     ]
 
 
+
+
 MIGRATION_MODULES = {
-    'movies': 'movies.migrations'
+    'movies': 'movies.migrations',
+    'personal':'profiles.migrations'
 }
 
 
@@ -54,6 +57,7 @@ INSTALLED_APPS = [
     'sass_processor',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'film.urls'
@@ -113,7 +118,15 @@ if os.name == 'nt':
         'PASSWORD': '7777777',
         'HOST': 'localhost',
         'PORT': '5432',
+        "MIGRATE": True,
+        'POSTGRES_EXTENSIONS': ['hstore'],
         'TEST': {
+            'NAME': 'movietest',
+            'USER': 'postgres',
+            "MIGRATE": True,
+            'POSTGRES_EXTENSIONS': ['hstore']
+        },
+        'template1': {
             'NAME': 'movietest',
             'USER': 'postgres',
             "MIGRATE": True,
@@ -121,17 +134,6 @@ if os.name == 'nt':
         },
      }
      }
-# NOT NEEDED AFTER ADDING .ENV
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'mvs',
-#         'USER': 'postgres',
-#         'PASSWORD': '7777777',
-#         'HOST': 'db',
-#         'PORT': '5432',
-#     }
-# }
 
 
 #-------------------------------------------------------------

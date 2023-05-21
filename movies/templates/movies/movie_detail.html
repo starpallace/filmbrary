@@ -8,30 +8,29 @@
 {% endblock title %}
 
 
-
 {% block body %}
 
-<div class="container text-center">
-    <div class="row">
-      <div class="col">
-        <h3 class="detail-title">{{ film.title }}</h3>
+<div class="container  text-center">
+    <div class="row justify-content-center">
+      <div class="col w-100" ">
+        <h3 class="detail-title" id="film-title">{{ film.title }}</h3>
       </div>
     </div>
-    <div class="row">
-        <div class="col-4">
+    <div class="row ">
+        <div class="col-8 ">
             <img src="{{ film.poster.url }}" style="width:450px" class="poster-detail" alt="poster">
         </div>
-        <div class="col-8">
-          <div class="film-headers">
+        <div class="col-3 ">
+          <div style="margin-left:12px" class="film-headers pl-3">
                   
-            <div>
+            <div >
               
               <div  class="rating-menu">
                 <h3 style="margin-top: 10px;">World Rating{% for item, value in user.personal.individ_rates.items %}
                                                           {% if item == film.title %}
                                                           / Your score
                                                           {% endif %}{% endfor %}</h3>
-                <h5>{{ film.rating | floatformat:2}}
+                <h5 id="film-rating" value="{{film.rating}}">{{ film.rating | floatformat:2}}
                                                     {% for item, value in user.personal.individ_rates.items %}
                                                     {% if item == film.title %}
                                                     / {{value}}</h5>
@@ -40,15 +39,23 @@
                 
                 <form method="POST">
                   {% csrf_token %}
-                  <input class="form-range individual-ratings m-2 " type="text" name="rating"  value="" data-bleeder-min="1" data-bleeder-max="10"   data-bleeder-step="0.1" data-bleeder-id="{{film.id}}" id="Rating{{film.id}}" data-bleeder-pandle="custom" data-bleeder-picks="[ 1, 2, 3, 4,5,6,7,8,9,10]" picks_positions="[1,2,3,4,5,6,7,8,9,10]" data-bleeder-value="{{film.rating}}"/> 
+                  <input class="form-range individual-ratings m-2 " type="text" name="rating"  value="" data-bleeder-min="1" data-bleeder-max="10"   data-bleeder-step="0.1" data-bleeder-id="{{film.id}}" id="rating{{film.id}}" data-bleeder-pandle="custom" data-bleeder-picks="[ 1, 2, 3, 4,5,6,7,8,9,10]" picks_positions="[1,2,3,4,5,6,7,8,9,10]" data-bleeder-value="{{film.rating}}"/> 
                   {% if user.is_authenticated %}
-                  <button class="btn btm-sm m-2 btn-warning" action="submit">Rate</button>
+                  <button id="rate-btn" class="btn btm-sm m-2 btn-warning" action="submit">Rate</button>
                   {% endif %}
                 </form>  
+                <form method="POST">
+                  {% csrf_token %}
+                  <label for="rating{{film.id}}">rate:</label><br>
+                  <input type="text" name="rating"  data-bleeder-id="{{film.id}}" id="rating{{film.id}}-2" /> 
+                  {% if user.is_authenticated %}
+                  <button id="rate-btn-2" class="btn btm-sm m-2 btn-warning" action="submit">Rate</button>
+                  {% endif %}
+                </form> 
               </div>
             </div>
 
-
+            <p hidden id="film-id" value="{{film.id}}">{{film.id}}</p>
             <div>
               <h3 style="margin-top: 10px;">Year</h3>
               <h5>{{ film.year}}</h5>           

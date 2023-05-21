@@ -1,23 +1,26 @@
 import pytest
-from django.contrib.auth.models import User
+
 #from django.test import LiveServerTestCase
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium import webdriver
+from django.contrib.auth.models import User
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+#from selenium.webdriver.chrome.options import 
 
 import time
 
-from user_library import user_list
+from inject_data.user_library import user_list
 
 
+
+@pytest.mark.usefixtures("chrome_sel")
 class TestA(StaticLiveServerTestCase):
 
     def test_register_and_login(self):
-        driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
+       
+        # next line we need for using driver name from fixture
+        driver = self.driver
         for new_user in user_list:
             #register new account
             driver.get((f"{self.live_server_url}/viewers/register/"))
@@ -34,16 +37,18 @@ class TestA(StaticLiveServerTestCase):
         driver.get((f"{self.live_server_url}/viewers/login"))
         time.sleep(0.5)
         #login with first account in user_list
+        
         user1=user_list[0]
         print(user1['name'])
         driver.find_element(By.NAME,'username').send_keys(user1['name'])
         driver.find_element(By.NAME,'password').send_keys(user1['password'])
         driver.find_element(By.ID,'submit').send_keys(Keys.RETURN)
         time.sleep(1)
+        driver.implicitly_wait(3)
         print('prepare completed')
 
         assert User.objects.count() == 2
         assert driver.title == 'FilmBrary'
         self.assertEqual(driver.title, 'FilmBrary')
-        
-        
+
+

@@ -16,15 +16,18 @@ def film_page(request,slug):
         new_score = request.POST.get('rating')
         ratemovie = MovieWorld.objects.get(slug=slug)
         pers_model = Personal.objects.get(user=request.user)
+
+        # current user's list of rates 
         cur_object = pers_model.individ_rates
         new_dic = dict()
         rated = 0
         voters_number = int(ratemovie.voters_number)
         cur_rating=float(ratemovie.rating)
         #next section checks if User rated current film and if not adds to new dictionary, which will became new individ_rates
+        print('!!!!!!!!!!!!',type(cur_object))
         for key, val in cur_object.items():
             if key == ratemovie.title:
-                exclude_previous=float(object[key])
+                exclude_previous=float(cur_object[key])
                 new_dic[key] = new_score
                 rated = 1
             else:

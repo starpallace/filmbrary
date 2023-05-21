@@ -10,7 +10,8 @@ from ..cache import tags, genres, countries
 def home(request):
     
     movies = MovieWorld.objects.all().order_by('-id')
-    base_line= 'http://localhost:8000/?'
+    # start of query string
+    base_line= '/?'
     
     
     if request.method == 'GET':
