@@ -10,7 +10,6 @@ from profiles import signals
 class MovieFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = MovieWorld
-        database='movietest'
 
     slug= 'big-lebowski'
     title = 'Big Lebowsky'

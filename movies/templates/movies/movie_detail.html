@@ -24,7 +24,6 @@
           <div style="margin-left:12px" class="film-headers pl-3">
                   
             <div >
-              
               <div  class="rating-menu">
                 <h3 style="margin-top: 10px;">World Rating{% for item, value in user.personal.individ_rates.items %}
                                                           {% if item == film.title %}
@@ -37,21 +36,23 @@
                                                     {% endif %}
                                                     {% endfor %}
                 
-                <form method="POST">
+                {% for item, value in user.personal.individ_rates.items %}
+                {% if item == film.title %}
+                <p hidden id="user-rate" value="{{value}}">{{value}}</p>
+                {% endif %}
+                {% endfor %}
+                <form  method="POST">
                   {% csrf_token %}
-                  <input class="form-range individual-ratings m-2 " type="text" name="rating"  value="" data-bleeder-min="1" data-bleeder-max="10"   data-bleeder-step="0.1" data-bleeder-id="{{film.id}}" id="rating{{film.id}}" data-bleeder-pandle="custom" data-bleeder-picks="[ 1, 2, 3, 4,5,6,7,8,9,10]" picks_positions="[1,2,3,4,5,6,7,8,9,10]" data-bleeder-value="{{film.rating}}"/> 
-                  {% if user.is_authenticated %}
-                  <button id="rate-btn" class="btn btm-sm m-2 btn-warning" action="submit">Rate</button>
+                  <input class="form-range individual-ratings m-2 mr-8 " type="text" name="rating"  value="" data-bleeder-min="1" data-bleeder-max="10"   data-bleeder-step="0.1" data-bleeder-id="{{film.id}}" id="rating{{film.id}}" data-bleeder-pandle="custom" data-bleeder-picks="[ 1, 2, 3, 4,5,6,7,8,9,10]" picks_positions="[1,2,3,4,5,6,7,8,9,10]" data-bleeder-value="{{film.rating}}"/> 
+                  <div class="d-flex justify-content-center mb-4">
+                  {% if user.is_superuser %}
+                    <input class="form-control form-control-sm m-2" style="width: 50px" type="text" name="rating" id="rating{{film.id}}-2" /> 
                   {% endif %}
+                  {% if user.is_authenticated %}
+                    <button  class="btn btn-warning m-2" id="rate-btn"action="submit">Rate</button>
+                  {% endif %}
+                </div>
                 </form>  
-                <form method="POST">
-                  {% csrf_token %}
-                  <label for="rating{{film.id}}">rate:</label><br>
-                  <input type="text" name="rating"  data-bleeder-id="{{film.id}}" id="rating{{film.id}}-2" /> 
-                  {% if user.is_authenticated %}
-                  <button id="rate-btn-2" class="btn btm-sm m-2 btn-warning" action="submit">Rate</button>
-                  {% endif %}
-                </form> 
               </div>
             </div>
 

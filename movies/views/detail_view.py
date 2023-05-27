@@ -11,7 +11,7 @@ def film_page(request,slug):
     set_dict = dict()
     movies = MovieWorld.objects.all()
 
-    # posts user rating of current film (making all possible chacks))
+    # posts user rating of current film (making all possible checks))
     if request.method == "POST":
         new_score = request.POST.get('rating')
         ratemovie = MovieWorld.objects.get(slug=slug)
@@ -20,21 +20,21 @@ def film_page(request,slug):
         # current user's list of rates 
         cur_object = pers_model.individ_rates
         new_dic = dict()
-        rated = 0
+        rated = False
         voters_number = int(ratemovie.voters_number)
         cur_rating=float(ratemovie.rating)
         #next section checks if User rated current film and if not adds to new dictionary, which will became new individ_rates
-        print('!!!!!!!!!!!!',type(cur_object))
+        
         for key, val in cur_object.items():
             if key == ratemovie.title:
                 exclude_previous=float(cur_object[key])
                 new_dic[key] = new_score
-                rated = 1
+                rated = True
             else:
                 new_dic[key] = val
 
         #depending on if User rated film change rating        
-        if rated == 0:
+        if rated == False:
             new_dic[ratemovie.title] = new_score
             rating = (cur_rating*float(voters_number)+float(new_score))/(float(voters_number)+1)
             voters_number+=1

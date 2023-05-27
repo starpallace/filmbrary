@@ -7,13 +7,14 @@ from PIL import Image
 def clear_list():
     return list()
 
+base_voters = 20
 
 class MovieWorld(models.Model):
      
     slug= models.SlugField(max_length=500, default='changeme')
     title = models.TextField(max_length=300)
     year = models.PositiveSmallIntegerField(default=1900,validators=[  MaxValueValidator(2050), MinValueValidator(1900)  ])
-    voters_number = models.PositiveIntegerField(default=20)
+    voters_number = models.PositiveIntegerField(default=base_voters)
     rating = models.DecimalField(default='0.01', max_digits=9, decimal_places=6, validators=[ MaxValueValidator(10)])    
     poster = models.ImageField(max_length=500, default='movie.jpg', upload_to='posters')
     screenshots = models.ImageField(blank=True)
