@@ -4,10 +4,11 @@ In this repository you will find movie-info site, based on django, postgre , pyt
 To use this repository you need Docker. Usage: from repository root run in cmd (or powershell): 
 1." Docker build ." 
 2. "Docker-compose up" 
-3. Visit localhost:8000 in your browser
-You can also use virtual enviroment to run this project, but you need postgres to be installed, and feed postgres movies.dump using PSQL and credentials from .env file
+3. Visit localhost:8000 in your browser.
 
-Purpose of this site is to give user a nice opportunity to filter database and find right film to right moment. Here you can easilly search film about London or Paris, or you can find scary film about Rachel. For me, personaly is important to cut off something, I don't like, or is not best choise for this evening. For example, I might want to see comedy, but not drama or cartoon, or one from 19xx-s with rating 3.1 . Also I might search for horror, but not a thriller or anime . So, you are welcome to try yourself ;)
+You can also use virtual enviroment to run this project, but you need postgres to be installed, and provide postgres movies.dump using PSQL and credentials from .env file
+
+Purpose of this site is to give user a nice opportunity to filter database and find right film for right moment. Here you can easily search film about London or Paris, or you can find scary film about Rachel. For me, personaly is important to cut off something, I don't like, or is not best choise for this evening. For example, I might want to see comedy, but not drama or cartoon, or one from 19xx-s with rating 3.1 . Also I might search for horror, but not a thriller or anime . So, you are welcome to try yourself ;)
 
 Technical tips
 
